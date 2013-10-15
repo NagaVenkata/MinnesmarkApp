@@ -1,0 +1,206 @@
+[
+    {
+        "name": "Title",
+        "attributes": {"ledTitle": "univ1"},
+        "type": "title"
+    },
+    {
+        "name": "NumberOfRegions",
+        "attributes": {"numRegions": 2},
+        "type": "NumberOfRegions"
+    },
+    {
+        "name": "launch",
+        "type": "generic",
+        "actions": {"application-launched": [
+            "Start",
+            "mapMarker1",
+            "mapMarker2",
+            "enableStation1Compass",
+            "disableStation2Compass"
+        ]}
+    },
+    {
+        "name": "Start",
+        "type": "start",
+        "actions": {"application-start": [
+            "compassView",
+            "NumberOfRegions",
+            "NumberOfCollectItems"
+        ]}
+    },
+    {
+        "name": "stationEnterAudio",
+        "attributes": {
+            "filename": "magic-chime.mp3",
+            "collectItem": false
+        },
+        "type": "audio",
+        "actions": {"audio-finished-playing": []}
+    },
+    {
+        "name": "wayPointAudio",
+        "attributes": {
+            "filename": "wayPoint.m4a",
+            "collectItem": false
+        },
+        "type": "audio",
+        "actions": {"audio-finished-playing": []}
+    },
+    {
+        "name": "compassView",
+        "attributes": {"showCompassView": true},
+        "type": "compassView"
+    },
+    {
+        "name": "mapMarker1",
+        "attributes": {
+            "modelName": "base.osg",
+            "markerName": "patt.map_marker2"
+        },
+        "type": "marker"
+    },
+    {
+        "name": "mapEditMarker1",
+        "attributes": {
+            "modelName": "diamond.osg",
+            "markerName": "patt.map_marker2"
+        },
+        "type": "editModel"
+    },
+    {
+        "name": "mapMarker2",
+        "attributes": {
+            "modelName": "base.osg",
+            "markerName": "patt.map_marker3"
+        },
+        "type": "marker"
+    },
+    {
+        "name": "mapEditMarker2",
+        "attributes": {
+            "modelName": "diamond.osg",
+            "markerName": "patt.map_marker3"
+        },
+        "type": "editModel"
+    },
+    {
+        "name": "enableStation1Compass",
+        "attributes": {
+            "showCompassMarker": true,
+            "regionIdentifier": "station1"
+        },
+        "type": "compassmarker"
+    },
+    {
+        "name": "disableStation1Compass",
+        "attributes": {
+            "showCompassMarker": false,
+            "regionIdentifier": "station1"
+        },
+        "type": "compassmarker"
+    },
+    {
+        "name": "station1",
+        "attributes": {
+            "shouldDisplayOnCompass": false,
+            "radius": 20,
+            "longitude": 15.574815273284912,
+            "latitude": 58.39774267512157,
+            "swingPoint": false
+        },
+        "type": "region",
+        "actions": {"enter-region": [
+            "disableStation1Compass",
+            "stationEnterAudio",
+            "station1_image"
+        ]}
+    },
+    {
+        "name": "station1_image",
+        "attributes": {
+            "height": 512,
+            "imageName": "childrenAtPond1.jpg",
+            "width": 512,
+            "collectItem": false
+        },
+        "type": "image",
+        "actions": {"image-disappeared": ["station1_video"]}
+    },
+    {
+        "name": "station1_video",
+        "attributes": {
+            "filename": "astridsbarndomshem2.m4v",
+            "filetype": "m4v",
+            "collectItem": true
+        },
+        "type": "video",
+        "actions": {"video-finished-playing": ["enableStation2Compass"]}
+    },
+    {
+        "name": "enableStation2Compass",
+        "attributes": {
+            "showCompassMarker": true,
+            "regionIdentifier": "station2"
+        },
+        "type": "compassmarker"
+    },
+    {
+        "name": "disableStation2Compass",
+        "attributes": {
+            "showCompassMarker": false,
+            "regionIdentifier": "station2"
+        },
+        "type": "compassmarker"
+    },
+    {
+        "name": "station2",
+        "attributes": {
+            "shouldDisplayOnCompass": false,
+            "radius": 20,
+            "longitude": 15.574643611907959,
+            "latitude": 58.398496031003674,
+            "swingPoint": false
+        },
+        "type": "region",
+        "actions": {"enter-region": [
+            "disableStation2Compass",
+            "stationEnterAudio",
+            "station2_image"
+        ]}
+    },
+    {
+        "name": "station2_image",
+        "attributes": {
+            "height": 800,
+            "imageName": "candel.png",
+            "width": 530,
+            "collectItem": true
+        },
+        "type": "image",
+        "actions": {"image-disappeared": ["station2_video"]}
+    },
+    {
+        "name": "station2_video",
+        "attributes": {
+            "filename": "boa7.m4v",
+            "filetype": "m4v",
+            "collectItem": false
+        },
+        "type": "video",
+        "actions": {"video-finished-playing": [
+            "mapEditMarker2",
+            "Done"
+        ]}
+    },
+    {
+        "name": "NumberOfCollectItems",
+        "attributes": {"numCollectItems": 1},
+        "type": "NumberOfCollectItems"
+    },
+    {
+        "name": "Done",
+        "type": "done",
+        "actions": {"application-done": []}
+    }
+]
